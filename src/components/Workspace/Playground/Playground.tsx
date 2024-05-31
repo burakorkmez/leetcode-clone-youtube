@@ -54,7 +54,7 @@ const Playground: React.FC<PlaygroundProps> = ({ problem, setSuccess, setSolved 
 		}
 		try {
 			userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
-			const cb = new Function(`return ${userCode}`)();
+			const cb = userCode//new Function(`return ${userCode}`)();
 			const handler = problems[pid as string].handlerFunction;
 
 			if (typeof handler === "function") {

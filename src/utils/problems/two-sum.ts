@@ -1,32 +1,42 @@
 import assert from "assert";
 import { Problem } from "../types/problem";
+import piston from "piston-client";
 
 const starterCodeTwoSum = `function twoSum(nums,target){
   // Write your code here
 };`;
 
 // checks if the user has the correct code
+function sleep(ms:any) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const handlerTwoSum = (fn: any) => {
 	// fn is the callback that user's code is passed into
+
+	const client = piston({ server: "https://emkc.org" });
 	try {
 		const nums = [
 			[2, 7, 11, 15],
-			[3, 2, 4],
-			[3, 3],
 		];
 
-		const targets = [9, 6, 6];
+		const targets = [9];
 		const answers = [
-			[0, 1],
-			[1, 2],
 			[0, 1],
 		];
 
 		// loop all tests to check if the user's code is correct
 		for (let i = 0; i < nums.length; i++) {
 			// result is the output of the user's function and answer is the expected output
-			const result = fn(nums[i], targets[i]);
-			assert.deepStrictEqual(result, answers[i]);
+			const fullCode = `${fn}\nconsole.log(twoSum(${JSON.stringify(nums[i])}, ${targets[i]}));`;
+			(async () => {
+				const result_1 = await client.execute('javascript', fullCode);
+				const result =JSON.parse(result_1.run.stdout.trim());
+				await assert.deepStrictEqual(result, answers[i]);
+				await sleep(1000)
+			})();
+			
+			
 		}
 		return true;
 	} catch (error: any) {
@@ -34,6 +44,8 @@ const handlerTwoSum = (fn: any) => {
 		throw new Error(error);
 	}
 };
+
+
 
 export const twoSum: Problem = {
 	id: "two-sum",

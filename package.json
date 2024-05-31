@@ -16,10 +16,12 @@
 		"@uiw/codemirror-theme-vscode": "^4.19.16",
 		"@uiw/react-codemirror": "^4.19.16",
 		"assert": "^2.0.0",
+		"axios": "^1.7.2",
 		"eslint": "8.36.0",
 		"eslint-config-next": "13.2.4",
-		"firebase": "^9.18.0",
-		"next": "13.2.4",
+		"firebase": "^9.23.0",
+		"next": "^14.2.3",
+		"piston-client": "^1.0.2",
 		"react": "18.2.0",
 		"react-confetti": "^6.1.0",
 		"react-dom": "18.2.0",
@@ -32,8 +34,8 @@
 		"typescript": "5.0.2"
 	},
 	"devDependencies": {
-		"autoprefixer": "^10.4.14",
-		"postcss": "^8.4.21",
-		"tailwindcss": "^3.2.7"
+		"autoprefixer": "^10.4.19",
+		"postcss": "^8.4.38",
+		"tailwindcss": "^3.4.3"
 	}
 }
